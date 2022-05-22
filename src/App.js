@@ -10,7 +10,7 @@ import SignUp from './Pages/UserAuthorization/SignUp';
 
 function App() {
   return (
-    <div className='mx-5'>
+    <div>
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<HomePage></HomePage>}></Route>
