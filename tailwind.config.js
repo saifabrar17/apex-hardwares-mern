@@ -3,7 +3,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'hero-pattern': "url('https://template65062.motopreview.com/mt-demo/65000/65062/mt-content/uploads/2017/11/mt-1257_home_slider-5.jpg')"
+        'hero-tools': "url('https://template65062.motopreview.com/mt-demo/65000/65062/mt-content/uploads/2017/11/mt-1257_home_slider-5.jpg')",
+        'hero-cutter': "url('https://template65062.motopreview.com/mt-demo/65000/65062/mt-content/uploads/2017/11/mt-1257_home_slider04.jpg')",
+        'hero-hammer': "url('https://template65062.motopreview.com/mt-demo/65000/65062/mt-content/uploads/2017/11/mt-1257_home_slider-3.jpg')"
       }
     },
   },
