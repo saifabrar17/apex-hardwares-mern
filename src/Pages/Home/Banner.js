@@ -2,9 +2,12 @@ import React from 'react';
 
 const Banner = () => {
     return (
-        <div>
-            <h2>THIS IS BANNER</h2>
-        </div>
+        <div  className="hero min-h-screen bg-base-100 bg-hero-pattern bg-no-repeat bg-cover" >
+                <div className="hero-content content-center">
+                   <h1>SOMETHING</h1>
+                   
+                </div>
+            </div>
     );
 };
 

@@ -1,13 +1,17 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'hero-pattern': "url('https://template65062.motopreview.com/mt-demo/65000/65062/mt-content/uploads/2017/11/mt-1257_home_slider-5.jpg')"
+      }
+    },
   },
   daisyui: {
     themes: [
       {
         mytheme: {
-          primary: "#275988",
+          primary: "#28AAA9",
           secondary: "#f6d860",
           accent: "#37cdbe",
           neutral: "#3d4451",

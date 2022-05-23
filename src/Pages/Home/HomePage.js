@@ -1,6 +1,8 @@
 import React from 'react';
 import Banner from './Banner';
-import BusinessSummary from './BusinessSummary';
+import BusinessSummary from './BusinessSummary/BusinessSummary';
+import Reviews from './Reviews/Reviews';
+
 
 const HomePage = () => {
     return (
@@ -8,7 +10,7 @@ const HomePage = () => {
             <Banner></Banner>
             {/* TOOLS */}
             <BusinessSummary></BusinessSummary>
-            {/* Reviews */}
+            <Reviews></Reviews>
             {/* Extra 2 sections */}
         </div>
     );
