@@ -1,0 +1,11 @@
+.custom-css-login-page{
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-gap: 5px;
+}
+
+@media (min-width: 0px) and (max-width:575px){
+    .custom-css-login-page{
+        display: block;
+    }
+}
