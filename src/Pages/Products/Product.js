@@ -1,0 +1,33 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const Product = ({ product }) => {
+
+    const { _id, name, img, description, minOrder, available, price } = product;
+    const navigate = useNavigate();
+
+    const navigateToProductDetail = id =>{
+        navigate(`/purchase/${_id}`);
+    }
+    return (
+        <div>
+            <div class="card w-96 bg-base-100 shadow-xl">
+                <figure><img src={img} alt="Shoes" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">{name}</h2>
+                    <p>{description}</p>
+                    <p>Price Per Unit: {price}</p>
+                    <div class="card-actions justify-between">
+                        <div><p>Minimum: {minOrder}</p></div>
+                        <div><p>Available: {available}</p></div>
+                    </div>
+                    <div class="card-actions justify-end">
+                        <button onClick={() => navigateToProductDetail(_id)} className='btn text-white btn-primary'>Purchase</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Product;
