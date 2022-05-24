@@ -5,6 +5,7 @@ import loginImage from '../../images/userloginImage.jpg';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import auth from '../../firebase.init';
 import './userAuth.css';
+import Loading from '../Shared/Loading/Loading';
 
 
 const Login = () => {
@@ -18,11 +19,15 @@ const Login = () => {
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
+    useEffect( () =>{
+        if (user || gUser) {
+            navigate(from, { replace: true });
+        }
+    }, [user, gUser, from, navigate])
 
-
-    // if (loading || gLoading) {
-    //     // return <Loading></Loading>
-    // }
+    if (loading || gLoading) {
+        return <Loading></Loading>
+    }
 
     if (error || gError) {
         loginError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>

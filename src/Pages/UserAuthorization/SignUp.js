@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import loginImage from '../../images/userloginImage.jpg';
+import Loading from '../Shared/Loading/Loading';
 // import useToken from '../../Hooks/UseToken';
 // import Loading from '../../Shared/Loading';
 // import useToken from '../../Hooks/UseToken';
@@ -22,12 +23,21 @@ const SignUp = () => {
 
     // const [token] = useToken(user || gUser);
 
-    const navigate = useNavigate();
+  
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     let signInError;
 
+    useEffect( () =>{
+        if (user || gUser) {
+            navigate(from, { replace: true });
+        }
+    }, [user, gUser, from, navigate])
+
     if (loading || gLoading || updating) {
-        // return <Loading></Loading>
+        return <Loading></Loading>
     }
 
     if (error || gError || updateError) {
