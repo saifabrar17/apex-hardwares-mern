@@ -1,7 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Blogs from './Pages/Blogs/Blogs';
+import 'react-toastify/dist/ReactToastify.css';
 import Portfolio from './Pages/Blogs/Portfolio';
+import AddNewProduct from './Pages/Dashboard/AddNewProduct';
 import AddReview from './Pages/Dashboard/AddReview';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyOrders from './Pages/Dashboard/MyOrders';
@@ -14,6 +16,7 @@ import NotFound from './Pages/Shared/NotFound/NotFound';
 import Login from './Pages/UserAuthorization/Login';
 import RequireAuth from './Pages/UserAuthorization/RequireAuth';
 import SignUp from './Pages/UserAuthorization/SignUp';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -34,10 +37,13 @@ function App() {
           <Route index element={<Profile></Profile>}></Route>
           <Route path="review" element={<AddReview></AddReview>}></Route>
           <Route path="orders" element={<MyOrders></MyOrders>}></Route>
+          <Route path="addNewProduct" element={<AddNewProduct></AddNewProduct>}></Route>
         </Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
+      <ToastContainer></ToastContainer>
       <Footer></Footer>
+     
     </div>
   );
 }

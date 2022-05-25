@@ -52,7 +52,7 @@ const Purchase = () => {
                                     <input type="text" value={product.minOrder} disabled class="input  input-bordered input-sm w-12" />
                                 </label>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

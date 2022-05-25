@@ -28,7 +28,7 @@ const Portfolio = () => {
 
 
                     <h2 className='text-xl pt-5 lg:pt0 lg:pb-2 font-bold'>About Me:</h2>
-                    <p className='w-3/4 text-justify'>I am a CSE studying student and is always passionate about programming. I've been learning programming since 2019 and currently I'm developing my skills on Frontend Development with React Js and I love to see myself as a full stack web developer in future. I always try to put my best effort on learning new elements and develop my skill. I hope to be a successful developer one day. I love to be innovative and go beyond my limit.</p>
+                    <p className='w-full lg:w-3/4 text-justify'>I am a CSE studying student and is always passionate about programming. I've been learning programming since 2019 and currently I'm developing my skills on Frontend Development with React Js and I love to see myself as a full stack web developer in future. I always try to put my best effort on learning new elements and develop my skill. I hope to be a successful developer one day. I love to be innovative and go beyond my limit.</p>
 
                     <h2 className='text-xl pt-5 lg:pt0 lg:pb-2 font-bold'>Top Skills:</h2>
                     <div className='grid grid-cols-4 lg:grid-cols-6 w-fit gap-3'>
