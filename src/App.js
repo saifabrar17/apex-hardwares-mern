@@ -18,6 +18,7 @@ import RequireAuth from './Pages/UserAuthorization/RequireAuth';
 import SignUp from './Pages/UserAuthorization/SignUp';
 import { ToastContainer } from 'react-toastify';
 import ManageAllProducts from './Pages/Dashboard/ManageAllProducts';
+import Payment from './Pages/Payment/Payment';
 
 function App() {
   return (
@@ -34,6 +35,11 @@ function App() {
             <Purchase></Purchase>
           </RequireAuth>
         }></Route>
+        <Route path='/payment/:id' element={
+          <RequireAuth>
+            <Payment></Payment>
+          </RequireAuth>
+        }></Route>
 
         <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
           <Route index element={<Profile></Profile>}></Route>
@@ -47,7 +53,7 @@ function App() {
       </Routes>
       <ToastContainer></ToastContainer>
       <Footer></Footer>
-     
+
     </div>
   );
 }

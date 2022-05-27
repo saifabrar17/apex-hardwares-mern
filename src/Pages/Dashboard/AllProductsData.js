@@ -1,26 +1,34 @@
 import React from 'react';
 
-const AllProductsData = ({product, setDeleteProduct}) => {
+const AllProductsData = ({ index, product, setDeleteProduct }) => {
 
-    const {name, img, description} = product;
+    const { name, img, available,description } = product;
 
     return (
-        <div>
-            <div className='product-list'>
-                <div className="d-flex product-list-each justify-content-between">
-                    <div className='d-flex'>
-                        <img src={product.img} alt="" />
-                        <p className='d-flex ms-2 align-items-center'>{name}</p>
-                    </div>
-                    <div className='d-flex justify-content-center align-items-center'>
-                        <label onClick={() => setDeleteProduct(product)} for="delete-confirm-modal" class="btn modal-button">open modal</label>
-                        
+        
 
+            <tr>
+                <th>{index + 1}</th>
+                <td>
+                    <div class="avatar">
+                        <div class="w-16 rounded">
+                            <img src={img} alt="" />
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </td>
+                <td>{name}</td>
+                <td>{name}</td>
+                {/* <td>{description.slice(0,50)}</td> */}
+                <td>{available}</td>
+                <td><label onClick={() => setDeleteProduct(product)} for="delete-confirm-modal" class="btn btn-sm text-white btn-error">Remove</label></td>
+
+            </tr>
+
+
+
+   
     );
 };
 
 export default AllProductsData;
+

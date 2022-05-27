@@ -20,7 +20,7 @@ const AddNewProduct = () => {
             img: event.target.img.value
 
         }
-        console.log(addItem);
+        // console.log(addItem);
         axios.post('http://localhost:5000/product', addItem)
             .then(response => {
                 const { data } = response;

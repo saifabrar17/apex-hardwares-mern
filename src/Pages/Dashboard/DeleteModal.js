@@ -6,8 +6,7 @@ const DeleteModal = ({ deleteProduct, setProducts, products, setDeleteProduct })
     const { _id, name } = deleteProduct;
 
     const handleDelete = () => {
-        // const proceed = window.confirm('Delete?');
-        // if (proceed) {
+
             const url = `http://localhost:5000/product/${_id}`;
             fetch(url, {
                 method: 'DELETE'
@@ -15,13 +14,12 @@ const DeleteModal = ({ deleteProduct, setProducts, products, setDeleteProduct })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    toast('Deleted');
+                    toast.warning('Product deleted successfully!');
                     const remaining = products.filter(product => product._id !== _id)
                     setDeleteProduct(null);
                     setProducts(remaining);
                 })
 
-        // }
     }
 
     return (
@@ -30,12 +28,12 @@ const DeleteModal = ({ deleteProduct, setProducts, products, setDeleteProduct })
             <input type="checkbox" id="delete-confirm-modal" class="modal-toggle" />
             <div class="modal modal-bottom sm:modal-middle">
                 <div class="modal-box">
-                    <h3 class="font-bold text-lg">Deleting {name}</h3>
-                    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+                    <h3 class="font-bold text-error text-lg">Are you sure want to remove {name}?</h3>
+                    <p class="py-4">You can't undo this action!</p>
                     <div class="modal-action">
 
-                        <button className='btn btn-danger' onClick={() => handleDelete()}>Delete Item</button>
-                        <label for="delete-confirm-modal" class="btn">No!</label>
+                        <button className='btn btn-error text-white ' onClick={() => handleDelete()}>Remove</button>
+                        <label for="delete-confirm-modal" class="btn-primary text-white btn">No!</label>
                     </div>
                 </div>
             </div>

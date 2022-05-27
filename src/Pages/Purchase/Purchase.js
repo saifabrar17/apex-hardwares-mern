@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const Purchase = () => {
@@ -8,12 +10,51 @@ const Purchase = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [user] = useAuthState(auth);
-    console.log(user);
+
+    
+ 
     useEffect(() => {
         fetch(`http://localhost:5000/product/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [id])
+
+    // const quantitySubmit = event =>{
+    //     const orderQuantityValue = event.target.quantity.value;
+
+    //     if(orderQuantityValue < product.minOrder){
+    //         toast.error('Minimum Order Not Fullfilled');
+    //     }
+    //     else if( orderQuantityValue > product.available){
+    //         toast.error('Maximum');
+    //     }
+        
+    //     event.preventDefault();
+    // }
+    const navigate = useNavigate();
+    const handlePlaceOrder = event =>{
+        event.preventDefault();
+        const order = {
+            email: user.email,
+            productId: product._id,
+            name: product.name,
+            img: product.img,
+            price: product.price,
+            orderQuantity: event.target.orderQuantity.value,
+            location: event.target.location.value,
+            phone: event.target.phone.value
+        }
+        axios.post('http://localhost:5000/order', order)
+        .then(response =>{
+            const {data} = response;
+            if(data.insertedId){
+                toast('Your order is booked!!!');
+                event.target.reset();
+                navigate(`/dashboard/orders`)
+            }
+        })
+    }
+
     return (
         <div className='purchase-page mx-20 min-h-[80vh]'>
             {/* BREADCRUMB START */}
@@ -81,28 +122,28 @@ const Purchase = () => {
                         </label>
                         <input type="text" value={product.name} disabled class="input input-bordered max-width" />
                     </div>
-                    <form >
+                    <form onSubmit={handlePlaceOrder}>
                         <div className="block lg:flex  gap-5">
                             <div class="form-control w-full">
                                 <label class="label">
                                     <span class="label-text">Quantity</span>
                                 </label>
-                                <input type="number" placeholder={product.minOrder} class="input input-bordered w-full" />
+                                <input type="number" name="orderQuantity" placeholder={product.minOrder} class="input input-bordered w-full" />
                             </div>
                             <div class="form-control w-full">
                                 <label class="label">
                                     <span class="label-text email">Phone:</span>
                                 </label>
-                                <input type="text" placeholder='Active Number' class="input input-bordered w-full" />
+                                <input type="text" name='phone' placeholder='Active Number' class="input input-bordered w-full" />
                             </div>
                         </div>
                         <div class="form-control w-full">
                             <label class="label">
                                 <span class="label-text email">Location:</span>
                             </label>
-                            <input type="text" placeholder='Delivery Location' class="input input-bordered w-full" />
+                            <input type="text" placeholder='Delivery Location' name='location' class="input input-bordered w-full" />
                         </div>
-                        <button class="btn btn-block btn-primary mt-3 text-white">Place order</button>
+                        <button type='submit' class="btn btn-block btn-primary mt-3 text-white">Place order</button>
                     </form>
                 </div>
 
