@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const OrderByEmail = ({order, index}) => {
 
-    const {img, price, name, orderQuantity } = order;
+    const {_id, img, price, name, orderQuantity } = order;
 
     const totalPrice = price * orderQuantity;
 
@@ -22,7 +23,9 @@ const OrderByEmail = ({order, index}) => {
                 <td>{orderQuantity}</td>
                 <td>{totalPrice}</td>  
                
-                <td><label class="btn btn-sm text-white btn-success">Pay</label></td>
+                <td>
+                    <Link to={`/payment/${_id}`} className='btn btn-success'>Pay</Link>
+                </td>
 
             </tr>
     );

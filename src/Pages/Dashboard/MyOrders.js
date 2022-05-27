@@ -11,18 +11,15 @@ const MyOrders = () => {
     useEffect(()=>{
         const email = user.email;
         const url = `http://localhost:5000/order-by/${email}`;
-        fetch(url)
+        fetch(url,{
+            method: 'GET',
+            headers: {
+                'authorization' : `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
         .then(res => res.json())
         .then(data => setOrders(data));
 
-        console.log(url);
-        // const getOrdersByMail = async() =>{
-        //    const email = user.email;
-        //     const url = `http://localhost:5000/orders?email=${email}`;
-        //     const {data} = await axios.get(url);
-        //     setOrders(data);
-        // }
-        // getOrdersByMail();
 
     },[user])
 
