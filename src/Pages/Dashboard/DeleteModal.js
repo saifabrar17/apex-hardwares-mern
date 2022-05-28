@@ -7,7 +7,7 @@ const DeleteModal = ({ deleteProduct, setProducts, products, setDeleteProduct })
 
     const handleDelete = () => {
 
-            const url = `http://localhost:5000/product/${_id}`;
+            const url = `https://tranquil-woodland-69836.herokuapp.com/product/${_id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -33,7 +33,7 @@ const DeleteModal = ({ deleteProduct, setProducts, products, setDeleteProduct })
                     <div className="modal-action">
 
                         <button className='btn btn-error text-white ' onClick={() => handleDelete()}>Remove</button>
-                        <label for="delete-confirm-modal" className="btn-primary text-white btn">No!</label>
+                        <label htmlFor="delete-confirm-modal" className="btn-primary text-white btn">No!</label>
                     </div>
                 </div>
             </div>

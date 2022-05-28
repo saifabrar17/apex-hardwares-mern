@@ -20,7 +20,7 @@ const AllProductsData = ({ index, product, setDeleteProduct }) => {
                 
               
                 <td>{available}</td>
-                <td><label onClick={() => setDeleteProduct(product)} for="delete-confirm-modal" className="btn btn-sm text-white btn-error">Remove</label></td>
+                <td><label onClick={() => setDeleteProduct(product)} htmlFor="delete-confirm-modal" className="btn btn-sm text-white btn-error">Remove</label></td>
 
             </tr>
 

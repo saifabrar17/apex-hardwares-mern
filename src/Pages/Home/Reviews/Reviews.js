@@ -5,14 +5,14 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://tranquil-woodland-69836.herokuapp.com/reviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
 
     return (
         <div>
-            <h1 className='text-4xl py-10 text-center '>Customer Reviews</h1>
+            <h1 className='text-4xl py-10 text-center font-bold text-primary '>Customer Reviews</h1>
 
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 px-12 py-12'>
                 {

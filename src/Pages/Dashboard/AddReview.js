@@ -18,7 +18,7 @@ const [reviewState, setReviewState] = useState({});
         }
         console.log(addItem);
      setReviewState(addItem);
-        axios.post('http://localhost:5000/reviews', addItem)
+        axios.post('https://tranquil-woodland-69836.herokuapp.com/reviews', addItem)
             .then(response => {
                 const { data } = response;
                 if (data.insertedId) {
@@ -28,22 +28,22 @@ const [reviewState, setReviewState] = useState({});
             })
     }
    
-console.log(reviewState.rating);
+
     return (
         <div>
             <h2 className='text-2xl  text-center text-primary'>Add A Review</h2>
             <div>
                 <form className='w-96 mx-auto'  onSubmit={handleSubmit}>
 
-                    <div class="form-control w-full">
-                        <label class="label">
-                            <span class="label-text">Share your thoughts about us!</span>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Share your thoughts about us!</span>
                         </label>
                         <input className='input mb-1 input-bordered w-full' placeholder='Description' name='description' />
                     </div>
-                    <div class="form-control w-full">
-                        <label class="label">
-                            <span class="label-text">Give us a review!</span>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Give us a review!</span>
                         </label>
                         <input className='input mb-1 input-bordered w-full' placeholder='Rating' name='rating' />
                     </div>
