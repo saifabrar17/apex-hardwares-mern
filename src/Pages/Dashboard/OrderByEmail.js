@@ -11,8 +11,8 @@ const OrderByEmail = ({order, index}) => {
         <tr>
                 <th>{index + 1}</th>
                 <td>
-                    <div class="avatar">
-                        <div class="w-16 rounded">
+                    <div className="avatar">
+                        <div className="w-16 rounded">
                             <img src={img} alt="" />
                         </div>
                     </div>

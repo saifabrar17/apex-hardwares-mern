@@ -58,9 +58,9 @@ const Purchase = () => {
     return (
         <div className='purchase-page mx-20 min-h-[80vh]'>
             {/* BREADCRUMB START */}
-            <div class="text-sm breadcrumbs">
+            <div className="text-sm breadcrumbs">
                 <ul>
-                    <li><Link to='/'> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4 mr-2 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                    <li><Link to='/'> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 mr-2 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
                         Home</Link></li>
                     <li>Purchase</li>
                     <li>{product.name}</li>
@@ -79,18 +79,18 @@ const Purchase = () => {
                         </div>
 
                         <div>
-                            <h2 class="card-title text-primary text-3xl">{product.name}</h2>
+                            <h2 className="card-title text-primary text-3xl">{product.name}</h2>
                             <p className='py-1 min-h-[100px]'>{product.description}</p>
-                            <div class="form-control">
-                                <label class="input-group input-group-sm">
+                            <div className="form-control">
+                                <label className="input-group input-group-sm">
                                     <span className='bg-primary text-white'>Available</span>
-                                    <input type="text" value={product.available} disabled class="input  input-bordered input-sm w-12" />
+                                    <input type="text" value={product.available} disabled className="input  input-bordered input-sm w-12" />
                                 </label>
                             </div>
-                            <div class="form-control mt-2">
-                                <label class="input-group input-group-sm">
+                            <div className="form-control mt-2">
+                                <label className="input-group input-group-sm">
                                     <span className='bg-primary text-white'>Minimum Qty</span>
-                                    <input type="text" value={product.minOrder} disabled class="input  input-bordered input-sm w-12" />
+                                    <input type="text" value={product.minOrder} disabled className="input  input-bordered input-sm w-12" />
                                 </label>
                             </div>
 
@@ -101,49 +101,49 @@ const Purchase = () => {
 
 
 
-                <div class="basis-2/5">
+                <div className="basis-2/5">
                     <div className="block lg:flex  gap-5">
-                        <div class="form-control w-full">
-                            <label class="label">
-                                <span class="label-text">Name</span>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text">Name</span>
                             </label>
-                            <input type="text" value={user.displayName} disabled class="input input-bordered w-full" />
+                            <input type="text" value={user.displayName} disabled className="input input-bordered w-full" />
                         </div>
-                        <div class="form-control w-full">
-                            <label class="label">
-                                <span class="label-text email">Email</span>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text email">Email</span>
                             </label>
-                            <input type="text" value={user.email} disabled class="input input-bordered w-full" />
+                            <input type="text" value={user.email} disabled className="input input-bordered w-full" />
                         </div>
                     </div>
-                    <div class="form-control w-full">
-                        <label class="label">
-                            <span class="label-text email">Product</span>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text email">Product</span>
                         </label>
-                        <input type="text" value={product.name} disabled class="input input-bordered max-width" />
+                        <input type="text" value={product.name} disabled className="input input-bordered max-width" />
                     </div>
                     <form onSubmit={handlePlaceOrder}>
                         <div className="block lg:flex  gap-5">
-                            <div class="form-control w-full">
-                                <label class="label">
-                                    <span class="label-text">Quantity</span>
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text">Quantity</span>
                                 </label>
-                                <input type="number" name="orderQuantity" placeholder={product.minOrder} class="input input-bordered w-full" />
+                                <input type="number" name="orderQuantity" placeholder={product.minOrder} className="input input-bordered w-full" />
                             </div>
-                            <div class="form-control w-full">
-                                <label class="label">
-                                    <span class="label-text email">Phone:</span>
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text email">Phone:</span>
                                 </label>
-                                <input type="text" name='phone' placeholder='Active Number' class="input input-bordered w-full" />
+                                <input type="text" name='phone' placeholder='Active Number' className="input input-bordered w-full" />
                             </div>
                         </div>
-                        <div class="form-control w-full">
-                            <label class="label">
-                                <span class="label-text email">Location:</span>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text email">Location:</span>
                             </label>
-                            <input type="text" placeholder='Delivery Location' name='location' class="input input-bordered w-full" />
+                            <input type="text" placeholder='Delivery Location' name='location' className="input input-bordered w-full" />
                         </div>
-                        <button type='submit' class="btn btn-block btn-primary mt-3 text-white">Place order</button>
+                        <button type='submit' className="btn btn-block btn-primary mt-3 text-white">Place order</button>
                     </form>
                 </div>
 

@@ -6,7 +6,6 @@ const UserTd = ({ user, index, refetch }) => {
     const { email, role } = user;
     const url = `http://localhost:5000/userx/admin/${email}`;
     const makeAdmin = () => {
-        console.log('inside ', url);
         fetch(url, { 
             method: 'PUT',
             headers: {
@@ -32,8 +31,8 @@ const UserTd = ({ user, index, refetch }) => {
         <tr>
             <th>{index + 1}</th>
             <td>{email}</td>
-            <td>{role !== 'admin' && <button onClick={makeAdmin} class="btn btn-xs">Make Admin</button>}</td>
-            <td><button class="btn btn-error btn-xs">Remove</button></td>
+            <td>{role !== 'admin' && <button onClick={makeAdmin} className="btn btn-xs">Make Admin</button>}</td>
+            <td><button className="btn btn-error btn-xs">Remove</button></td>
         </tr>
     );
 };

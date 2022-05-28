@@ -15,10 +15,10 @@ const Portfolio = () => {
                     <h2 className='text-3xl pt-0 lg:pt-5 font-bold'>SAIF ABRAR</h2>
                     <h2 className='text-xl font-bold'>Frontend Web Developer</h2>
 
-                    <div class="form-control  mt-2">
-                        <label class="input-group justify-center lg:justify-start input-group-sm">
+                    <div className="form-control  mt-2">
+                        <label className="input-group justify-center lg:justify-start input-group-sm">
                             <span className='bg-primary  text-white'>Email</span>
-                            <input type="text" value="saifabrar.webdev@gmail.com" disabled class="input  input-bordered input-sm w-44" />
+                            <input type="text" value="saifabrar.webdev@gmail.com" disabled className="input  input-bordered input-sm w-44" />
                         </label>
                     </div>
 
@@ -49,35 +49,35 @@ const Portfolio = () => {
             <h1 className='text-center text-primary text-2xl pt-5 pb-3'>Latest Projects</h1>
             <div className='grid mx-auto lg:mx-20 grid-cols-1 lg:grid-cols-3 gap-5'>
 
-                <div class="card card-compact w-96 bg-base-100 shadow-xl">
+                <div className="card card-compact w-96 bg-base-100 shadow-xl">
                     <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title">Shoes!</h2>
+                    <div className="card-body">
+                        <h2 className="card-title">Shoes!</h2>
                         <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Buy Now</button>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">Buy Now</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="card card-compact w-96 bg-base-100 shadow-xl">
+                <div className="card card-compact w-96 bg-base-100 shadow-xl">
                     <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title">Shoes!</h2>
+                    <div className="card-body">
+                        <h2 className="card-title">Shoes!</h2>
                         <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Buy Now</button>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">Buy Now</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="card card-compact w-96 bg-base-100 shadow-xl">
+                <div className="card card-compact w-96 bg-base-100 shadow-xl">
                     <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title">Shoes!</h2>
+                    <div className="card-body">
+                        <h2 className="card-title">Shoes!</h2>
                         <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Buy Now</button>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">Buy Now</button>
                         </div>
                     </div>
                 </div>
