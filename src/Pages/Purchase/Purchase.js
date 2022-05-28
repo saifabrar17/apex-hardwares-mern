@@ -11,7 +11,7 @@ const Purchase = () => {
     const [product, setProduct] = useState({});
     const [user] = useAuthState(auth);
 
-    
+    const [order, setOrder] = useState({});
  
     useEffect(() => {
         fetch(`http://localhost:5000/product/${id}`)
@@ -19,19 +19,10 @@ const Purchase = () => {
             .then(data => setProduct(data))
     }, [id])
 
-    // const quantitySubmit = event =>{
-    //     const orderQuantityValue = event.target.quantity.value;
-
-    //     if(orderQuantityValue < product.minOrder){
-    //         toast.error('Minimum Order Not Fullfilled');
-    //     }
-    //     else if( orderQuantityValue > product.available){
-    //         toast.error('Maximum');
-    //     }
-        
-    //     event.preventDefault();
-    // }
+    const something = 0;
     const navigate = useNavigate();
+
+
     const handlePlaceOrder = event =>{
         event.preventDefault();
         const order = {
@@ -52,6 +43,7 @@ const Purchase = () => {
                 event.target.reset();
                 navigate(`/dashboard/orders`)
             }
+            
         })
     }
 
@@ -143,7 +135,7 @@ const Purchase = () => {
                             </label>
                             <input type="text" placeholder='Delivery Location' name='location' className="input input-bordered w-full" />
                         </div>
-                        <button type='submit' className="btn btn-block btn-primary mt-3 text-white">Place order</button>
+                        <button type='submit' disabled={something} className="btn btn-block btn-primary mt-3 text-white">Place order</button>
                     </form>
                 </div>
 
