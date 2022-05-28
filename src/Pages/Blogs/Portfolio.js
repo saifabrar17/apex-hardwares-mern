@@ -50,37 +50,36 @@ const Portfolio = () => {
             <div className='grid mx-auto lg:mx-20 grid-cols-1 lg:grid-cols-3 gap-5'>
 
                 <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                    <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
+                    <figure><img src="https://retaintechnologies.com/wp-content/uploads/2020/04/Project-Management-Mantenimiento-1.jpg" alt="Shoes" /></figure>
                     <div className="card-body">
-                        <h2 className="card-title">Shoes!</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Buy Now</button>
+                        <h2 className="card-title mx-auto">Inventory Management</h2>
+                        <div className="card-actions justify-center">
+                         <a href="https://inventory-management-a11-ec4a6.web.app/" className="btn btn-primary text-white">Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="card card-compact w-96 bg-base-100 shadow-xl">
+                    <figure><img src="https://retaintechnologies.com/wp-content/uploads/2020/04/Project-Management-Mantenimiento-1.jpg" alt="Shoes" /></figure>
+                    <div className="card-body">
+                        <h2 className="card-title mx-auto">The Artsy Lens</h2>
+                        <div className="card-actions justify-center">
+                         <a href="https://the-artsy-lens-f13b5.web.app/" className="btn btn-primary text-white">Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="card card-compact w-96 bg-base-100 shadow-xl">
+                    <figure><img src="https://retaintechnologies.com/wp-content/uploads/2020/04/Project-Management-Mantenimiento-1.jpg" alt="Shoes" /></figure>
+                    <div className="card-body">
+                        <h2 className="card-title mx-auto">Portfolio Personal Website</h2>
+                        <div className="card-actions justify-center">
+                         <a href="https://saifabrar17.github.io/portfolio/" className="btn btn-primary text-white">Visit</a>
                         </div>
                     </div>
                 </div>
 
-                <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                    <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">Shoes!</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
+               
 
-                <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                    <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">Shoes!</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
 
         </div>

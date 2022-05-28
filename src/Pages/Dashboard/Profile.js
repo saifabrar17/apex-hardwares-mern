@@ -26,25 +26,25 @@ const Profile = () => {
                     <div className="form-control">
                         <label className="input-group  input-group-md">
                             <span className='bg-primary w-36 text-white'>Phone</span>
-                            <input type="text" value='dynamic number here' disabled className="w-full input input-bordered input-md" />
+                            <input type="text" value='' disabled className="w-full input input-bordered input-md" />
                         </label>
                     </div>
                     <div className="form-control">
                         <label className="input-group  input-group-md">
                             <span className='bg-primary w-36 text-white'>Address</span>
-                            <input type="text" value='dynamic address here' disabled className="w-full input input-bordered input-md" />
+                            <input type="text" value='' disabled className="w-full input input-bordered input-md" />
                         </label>
                     </div>
                     <div className="form-control">
                         <label className="input-group  input-group-md">
                             <span className='bg-primary w-36 text-white'>LinkedIn URL</span>
-                            <input type="text" value='dynamic linkedin here' disabled className="w-full input input-bordered input-md" />
+                            <input type="text" value=' ' disabled className="w-full input input-bordered input-md" />
                         </label>
                     </div>
                     <div className="form-control">
                         <label className="input-group  input-group-md">
                             <span className='bg-primary w-36 text-white'>Facebook</span>
-                            <input type="text" value='dynamic linkedin here' disabled className="w-full input input-bordered input-md" />
+                            <input type="text" value=' ' disabled className="w-full input input-bordered input-md" />
                         </label>
                     </div>
 
@@ -63,29 +63,29 @@ const Profile = () => {
                             {/* 1 */}
                             <div className="form-control">
                                 <label className="input-group  input-group-md">
-                                    <span className='bg-primary w-36 text-white'>Facebook</span>
-                                    <input type="text" value='dynamic linkedin here'  className="w-full input input-bordered input-md" />
+                                    <span className='bg-primary w-36 text-white'>Phone:</span>
+                                    <input type="text" value=''  className="w-full input input-bordered input-md" />
                                 </label>
                             </div>
                             {/*2 */}
                             <div className="form-control">
                                 <label className="input-group  input-group-md">
-                                    <span className='bg-primary w-36 text-white'>Facebook</span>
-                                    <input type="text" value='dynamic linkedin here'  className="w-full input input-bordered input-md" />
+                                    <span className='bg-primary w-36 text-white'>Address:</span>
+                                    <input type="text" value=''  className="w-full input input-bordered input-md" />
                                 </label>
                             </div>
                             {/* 3 */}
                             <div className="form-control">
                                 <label className="input-group  input-group-md">
-                                    <span className='bg-primary w-36 text-white'>Facebook</span>
-                                    <input type="text" value='dynamic linkedin here'  className="w-full input input-bordered input-md" />
+                                    <span className='bg-primary w-36 text-white'>Facebook:</span>
+                                    <input type="text" value=''  className="w-full input input-bordered input-md" />
                                 </label>
                             </div>
                             {/* 4 */}
                             <div className="form-control">
                                 <label className="input-group  input-group-md">
-                                    <span className='bg-primary w-36 text-white'>Facebook</span>
-                                    <input type="text" value='dynamic linkedin here'  className="w-full input input-bordered input-md" />
+                                    <span className='bg-primary w-36 text-white'>Linkedin:</span>
+                                    <input type="text" value=''  className="w-full input input-bordered input-md" />
                                 </label>
                             </div>
                             <input type="submit" value="Update" className="btn btn-secondary" />

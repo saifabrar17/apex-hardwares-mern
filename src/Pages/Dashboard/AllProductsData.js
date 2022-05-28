@@ -17,8 +17,8 @@ const AllProductsData = ({ index, product, setDeleteProduct }) => {
                     </div>
                 </td>
                 <td>{name}</td>
-                <td>{name}</td>
-                {/* <td>{description.slice(0,50)}</td> */}
+                
+              
                 <td>{available}</td>
                 <td><label onClick={() => setDeleteProduct(product)} for="delete-confirm-modal" className="btn btn-sm text-white btn-error">Remove</label></td>
 
