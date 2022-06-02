@@ -47,7 +47,7 @@ const [reviewState, setReviewState] = useState({});
                         </label>
                         <input className='input mb-1 input-bordered w-full' placeholder='Rating' name='rating' />
                     </div>
-                    <input className='btn mx-auto btn-block text-white btn-primary' disabled={reviewState.rating >= 5} type="submit" value="Add Product" />
+                    <input className='btn mx-auto btn-block text-white btn-primary' disabled={reviewState.rating >= 5} type="submit" value="Add Review" />
                 </form>
             </div>
         </div>
