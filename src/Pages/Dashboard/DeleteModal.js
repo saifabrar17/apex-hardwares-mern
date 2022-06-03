@@ -7,7 +7,7 @@ const DeleteModal = ({ deleteProduct, setProducts, products, setDeleteProduct })
 
     const handleDelete = () => {
 
-            const url = `https://tranquil-woodland-69836.herokuapp.com/product/${_id}`;
+            const url = `http://localhost:5000/product/${_id}`;
             fetch(url, {
                 method: 'DELETE'
             })

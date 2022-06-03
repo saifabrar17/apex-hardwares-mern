@@ -21,7 +21,7 @@ const AddNewProduct = () => {
 
         }
         // console.log(addItem);
-        axios.post('https://tranquil-woodland-69836.herokuapp.com/product', addItem)
+        axios.post('http://localhost:5000/product', addItem)
             .then(response => {
                 const { data } = response;
                 if (data.insertedId) {

@@ -18,7 +18,7 @@ const [reviewState, setReviewState] = useState({});
         }
         console.log(addItem);
      setReviewState(addItem);
-        axios.post('https://tranquil-woodland-69836.herokuapp.com/reviews', addItem)
+        axios.post('http://localhost:5000/reviews', addItem)
             .then(response => {
                 const { data } = response;
                 if (data.insertedId) {
