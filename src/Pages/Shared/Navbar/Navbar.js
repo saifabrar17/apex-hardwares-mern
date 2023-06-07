@@ -15,8 +15,6 @@ const Navbar = () => {
     //MENU IN ONE VARIABLE
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/blogs'>Blogs</Link></li>
-        <li><Link to='/portfolio'>Portfolio</Link></li>
         {
             user && <li><Link to='/dashboard'>Dashboard</Link></li>
         }
@@ -39,7 +37,7 @@ const Navbar = () => {
                             {menuItems}
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-xl ">Apex Hardwares</Link>
+                    <Link to='/' className="btn btn-ghost normal-case text-xl ">Apex WareHouse</Link>
                 </div>
                 <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">

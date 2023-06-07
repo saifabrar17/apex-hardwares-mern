@@ -14,7 +14,7 @@ const Purchase = () => {
     const [order, setOrder] = useState({});
  
     useEffect(() => {
-        fetch(`https://tranquil-woodland-69836.herokuapp.com/product/${id}`)
+        fetch(`http://localhost:5000/product/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [id])
@@ -35,7 +35,7 @@ const Purchase = () => {
             location: event.target.location.value,
             phone: event.target.phone.value
         }
-        axios.post('https://tranquil-woodland-69836.herokuapp.com/order', order)
+        axios.post('http://localhost:5000/order', order)
         .then(response =>{
             const {data} = response;
             if(data.insertedId){

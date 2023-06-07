@@ -1,4 +1,4 @@
-# The Apex Hardwares
+# The Apex WareHouse
 
  [Click Here to visit the live site](https://apex-hardwares.web.app/).
 
