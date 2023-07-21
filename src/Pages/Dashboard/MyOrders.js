@@ -19,7 +19,7 @@ const MyOrders = () => {
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [user]);
-  
+
   console.log(orders);
 
   return (
@@ -27,30 +27,36 @@ const MyOrders = () => {
       <h2 className="text-xl font-bold text-primary py-2">
         Total Orders: {orders.length}
       </h2>
-      <div className="overflow-x-auto">
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Order Quantity</th>
-              <th>Total</th>
-              <th>Pay</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order, index) => (
-              <OrderByEmail
-                key={order._id}
-                order={order}
-                index={index}
-              ></OrderByEmail>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {orders.length === 0 ? (
+        <p className="text-xl font-bold text-center text-warning py-2">
+          You haven't placed any order yet
+        </p>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="table w-full">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Order Quantity</th>
+                <th>Total</th>
+                <th>Pay</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order, index) => (
+                <OrderByEmail
+                  key={order._id}
+                  order={order}
+                  index={index}
+                ></OrderByEmail>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
