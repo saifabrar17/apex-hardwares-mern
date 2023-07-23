@@ -9,6 +9,7 @@ const Product = ({ product }) => {
     const navigateToProductDetail = id =>{
         navigate(`/purchase/${_id}`);
     }
+    // console.log(product);
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl">

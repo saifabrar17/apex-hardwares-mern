@@ -10,7 +10,7 @@ const Products = () => {
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
-
+console.log(products);
     return (
         <div>
             <h1 className='text-4xl py-10 text-center font-bold text-primary pt-10'>Our Products</h1>

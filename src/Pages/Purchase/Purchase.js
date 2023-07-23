@@ -16,33 +16,58 @@ const Purchase = () => {
       .then((data) => setProduct(data));
   }, [id]);
 
- const [error, setError] = useState(true); // State to handle form submission
-    const [validationMessage, setValidationMessage] = useState(''); // State for validation message
-    const minOrder = product.minOrder || 0;
-    const maxOrder = product.available || Infinity;
+  const [error, setError] = useState(true); // State to handle form submission
+  const [validationMessage, setValidationMessage] = useState(""); // State for validation message
+  const minOrder = product.minOrder || 0;
+  const maxOrder = product.available || Infinity;
 
-    const handleQuantityChange = (event) => {
-        const { value } = event.target;
+  const isValidPhoneNumber = (phoneNumber) => {
+    const phoneRegex = /^01\d{9}$/;
+    return phoneRegex.test(phoneNumber);
+  };
 
-        // Handle the case when the input field is empty
-        if (value === '') {
-            setValidationMessage('');
-            setError(true); // Disable the submit button
-        } else {
-            // Check if the quantity is within the allowed range
-            if (value < minOrder) {
-                setValidationMessage(`Minimum order quantity is ${minOrder}.`);
-                setError(true);
-            } else if (value > maxOrder) {
-                setValidationMessage(`Only ${maxOrder} products available.`);
-                setError(true);
-            } else {
-                setValidationMessage('');
-                setError(false);
-            }
-        }
-    };
+  const [phoneError, setPhoneError] = useState(false); // State to handle phone number validation
+  const [phoneValidationMessage, setPhoneValidationMessage] = useState(''); // State for phone number validation message
+    
+  const handleQuantityChange = (event) => {
+    const { value } = event.target;
 
+    // Handle the case when the input field is empty
+    if (value === "") {
+      setValidationMessage("");
+      setError(true); // Disable the submit button
+    } else {
+      // Check if the quantity is within the allowed range
+      if (value < minOrder) {
+        setValidationMessage(`Minimum order quantity is ${minOrder}.`);
+        setError(true);
+      } else if (value > maxOrder) {
+        setValidationMessage(`Only ${maxOrder} products available.`);
+        setError(true);
+      } else {
+        setValidationMessage("");
+        setError(false);
+      }
+    }
+  };
+
+  const handlePhoneChange = (event) => {
+    const { value } = event.target;
+
+    if (value === '') {
+      setPhoneValidationMessage('');
+      setPhoneError(true);
+    } else {
+      if (!isValidPhoneNumber(value)) {
+        setPhoneValidationMessage("Enter 11 digit number.");
+        setPhoneError(true);
+      } else {
+        setPhoneValidationMessage('');
+        setPhoneError(false);
+      }
+    }
+  };
+    
   const navigate = useNavigate();
 
   const handlePlaceOrder = (event) => {
@@ -175,7 +200,6 @@ const Purchase = () => {
           </div>
           <form onSubmit={handlePlaceOrder}>
             <div className="block lg:flex  gap-5">
-
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">Quantity</span>
@@ -190,10 +214,12 @@ const Purchase = () => {
                   onChange={handleQuantityChange}
                 />
                 {validationMessage && (
-                  <p className="text-red-500 text-sm pt-3">{validationMessage}</p>
+                  <p className="text-red-500 text-sm pt-3">
+                    {validationMessage}
+                  </p>
                 )}
               </div>
-              <div className="form-control w-full">
+              {/* <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text email">Phone:</span>
                 </label>
@@ -203,6 +229,25 @@ const Purchase = () => {
                   placeholder="Active Number"
                   className="input input-bordered w-full"
                 />
+              </div> */}
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text email">Phone:</span>
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Active Number"
+                  className={`input input-bordered w-full ${
+                    phoneError ? "input-error" : ""
+                  }`}
+                  onChange={handlePhoneChange}
+                />
+                {phoneValidationMessage && (
+                  <p className="text-red-500 text-sm pt-1">
+                    {phoneValidationMessage}
+                  </p>
+                )}
               </div>
             </div>
             <div className="form-control w-full">
@@ -218,7 +263,7 @@ const Purchase = () => {
             </div>
             <button
               type="submit"
-              disabled={error}
+              disabled={error || phoneValidationMessage}
               className="btn btn-block btn-primary mt-3 text-white"
             >
               Place order
