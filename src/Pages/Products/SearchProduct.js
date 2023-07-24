@@ -35,6 +35,7 @@ const SearchProduct = () => {
   return (
     <div>
       <h2>something</h2>
+      <p>64bd60c964e201cc01ea90de</p>
       <input
         type="text"
         placeholder="Search by Product ID"
