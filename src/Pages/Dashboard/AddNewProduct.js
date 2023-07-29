@@ -34,7 +34,7 @@ const AddNewProduct = () => {
 
     return (
         <div>
-            <h2 className='text-2xl  text-center text-primary'>Add New Product</h2>
+            <h2 className='text-2xl mt-2 text-center text-primary'>Add New Product</h2>
             <div>
                 <form className='w-96 mx-auto' onSubmit={handleSubmit}>
                     <input className='input mb-1 mt-2 input-bordered w-full' placeholder='Product Name' name='name' />

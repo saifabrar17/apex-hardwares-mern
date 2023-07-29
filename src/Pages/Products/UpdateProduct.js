@@ -1,4 +1,5 @@
-import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import React, { useState } from "react";
 
 const UpdateProduct = ({ product }) => {
@@ -6,8 +7,6 @@ const UpdateProduct = ({ product }) => {
 
   const handleUpdate = (event) => {
     event.preventDefault();
-  
-    // Remove the _id property from the updateItem object
     const { _id, ...updatedItem } = updateItem;
   
     const requestOptions = {
@@ -20,12 +19,22 @@ const UpdateProduct = ({ product }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // Check the server response
-        if (data.message === "Product updated successfully") {
+        if (data.message === 'Product updated successfully') {
           // Product updated successfully
+          toast.success('Product updated successfully');
           // Do something after successful update (e.g., show a success message)
+          setUpdateItem({
+            name: '',
+            minOrder: '',
+            description: '',
+            price: '',
+            available: '',
+            img: '',
+          });
         } else {
           // Product not found (optional handling)
           // Handle the case when the server returns 404 (Not Found) status
+          toast.error('Failed to update product');
         }
       })
       .catch((error) => {
@@ -43,13 +52,13 @@ const UpdateProduct = ({ product }) => {
       <form onSubmit={handleUpdate} class="max-w-md mx-auto">
         <div class="mb-4">
           <label for="name" class="block text-gray-700 font-bold mb-2">
-            Name:
+            Product Title
           </label>
           <input
             type="text"
             name="name"
             id="name"
-            value={updateItem.name}
+            value={updateItem?.name}
             onChange={handleChange}
             class="w-full border border-gray-400 rounded py-2 px-3 focus:outline-none focus:border-indigo-500"
           />
@@ -57,13 +66,13 @@ const UpdateProduct = ({ product }) => {
 
         <div class="mb-4">
           <label for="minOrder" class="block text-gray-700 font-bold mb-2">
-            Min Order:
+            Minimum Order Qty:
           </label>
           <input
             type="number"
             name="minOrder"
             id="minOrder"
-            value={updateItem.minOrder}
+            value={updateItem?.minOrder}
             onChange={handleChange}
             class="w-full border border-gray-400 rounded py-2 px-3 focus:outline-none focus:border-indigo-500"
           />
@@ -71,13 +80,13 @@ const UpdateProduct = ({ product }) => {
 
         <div class="mb-4">
           <label for="description" class="block text-gray-700 font-bold mb-2">
-            Description:
+            Product Description:
           </label>
           <input
             type="text"
             name="description"
             id="description"
-            value={updateItem.description}
+            value={updateItem?.description}
             onChange={handleChange}
             class="w-full border border-gray-400 rounded py-2 px-3 focus:outline-none focus:border-indigo-500"
           />
@@ -91,7 +100,7 @@ const UpdateProduct = ({ product }) => {
             type="number"
             name="price"
             id="price"
-            value={updateItem.price}
+            value={updateItem?.price}
             onChange={handleChange}
             class="w-full border border-gray-400 rounded py-2 px-3 focus:outline-none focus:border-indigo-500"
           />
@@ -99,13 +108,13 @@ const UpdateProduct = ({ product }) => {
 
         <div class="mb-4">
           <label for="available" class="block text-gray-700 font-bold mb-2">
-            Available:
+            Updated Available Qty:
           </label>
           <input
             type="text"
             name="available"
             id="available"
-            value={updateItem.available}
+            value={updateItem?.available}
             onChange={handleChange}
             class="w-full border border-gray-400 rounded py-2 px-3 focus:outline-none focus:border-indigo-500"
           />
@@ -113,20 +122,18 @@ const UpdateProduct = ({ product }) => {
 
         <div class="mb-4">
           <label for="img" class="block text-gray-700 font-bold mb-2">
-            Image:
+            Product Image Link:
           </label>
           <input
             type="text"
             name="img"
             id="img"
-            value={updateItem.img}
+            value={updateItem?.img}
             onChange={handleChange}
             class="w-full border border-gray-400 rounded py-2 px-3 focus:outline-none focus:border-indigo-500"
           />
         </div>
 
-        {/* Add a hidden input field to send the product ID along with the request */}
-        {/* <input type="hidden" name="productId" value={product._id} /> */}
 
         <button
           type="submit"
