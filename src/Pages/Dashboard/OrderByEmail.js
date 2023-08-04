@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const OrderByEmail = ({order, index}) => {
 
-    const {_id, img, price, name, orderQuantity } = order;
+    const {_id, img, price, name, orderQuantity, paymentStatus } = order;
 
     const totalPrice = price * orderQuantity;
-
+    console.log(order);
     return (
         <tr>
                 <th>{index + 1}</th>
@@ -23,9 +23,9 @@ const OrderByEmail = ({order, index}) => {
                 <td>{orderQuantity}</td>
                 <td>{totalPrice}</td>  
                
-                <td>
-                    <Link to={`/payment/${_id}`} className='btn btn-success'>Pay</Link>
-                </td>
+               {paymentStatus === "unpaid" ?  <td>
+                    <Link to={`/payment/${_id}`} className='btn btn-success'>Unpaid</Link>
+                </td> : <button className='btn btn-success'>Paid</button>}
 
             </tr>
     );

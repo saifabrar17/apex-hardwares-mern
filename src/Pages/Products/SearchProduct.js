@@ -50,6 +50,7 @@ console.log(barcodeData);
   return (
     <div className="flex justify-center">
       <div className="w-full max-w-md">
+        {/* 64bd60c964e201cc01ea90de */}
         <h2 className='text-2xl my-2 text-center text-primary'>Update Product</h2>
         <div className="flex">
           <input

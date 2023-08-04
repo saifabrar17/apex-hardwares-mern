@@ -31,17 +31,18 @@ const Purchase = () => {
     
   const handleQuantityChange = (event) => {
     const { value } = event.target;
-
+    const quantity = parseInt(value); // Convert the input value to a number
+  
     // Handle the case when the input field is empty
     if (value === "") {
       setValidationMessage("");
       setError(true); // Disable the submit button
     } else {
       // Check if the quantity is within the allowed range
-      if (value < minOrder) {
+      if (quantity < minOrder) {
         setValidationMessage(`Minimum order quantity is ${minOrder}.`);
         setError(true);
-      } else if (value > maxOrder) {
+      } else if (quantity > maxOrder) {
         setValidationMessage(`Only ${maxOrder} products available.`);
         setError(true);
       } else {
@@ -81,6 +82,7 @@ const Purchase = () => {
       orderQuantity: event.target.orderQuantity.value,
       location: event.target.location.value,
       phone: event.target.phone.value,
+      paymentStatus: "unpaid"
     };
     axios.post("http://localhost:5000/order", order).then((response) => {
       const { data } = response;
