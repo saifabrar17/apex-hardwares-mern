@@ -42,11 +42,12 @@ const MyOrders = () => {
                 <th>Price</th>
                 <th>Order Quantity</th>
                 <th>Total</th>
+                <th>Status</th>
                 <th>Pay</th>
               </tr>
             </thead>
             <tbody>
-              {orders.map((order, index) => (
+              {orders?.map((order, index) => (
                 <OrderByEmail
                   key={order._id}
                   order={order}

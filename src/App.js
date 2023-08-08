@@ -23,6 +23,7 @@ import AllUsers from './Pages/Dashboard/AllUsers';
 import RequireAdmin from './Pages/UserAuthorization/RequireAdmin';
 import SearchProduct from './Pages/Products/SearchProduct';
 import UpdateProduct from './Pages/Products/UpdateProduct';
+import PaidOrders from './Pages/Dashboard/PaidOrders';
 
 function App() {
   return (
@@ -34,8 +35,9 @@ function App() {
         <Route path="/search" element={<SearchProduct></SearchProduct>}></Route>
         <Route path="/update" element={<UpdateProduct></UpdateProduct>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/portfolio' element={<Portfolio></Portfolio>}></Route>
+        
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        <Route path='/paid' element={<PaidOrders></PaidOrders>}></Route>
         <Route path='/purchase/:id' element={
           <RequireAuth>
             <Purchase></Purchase>

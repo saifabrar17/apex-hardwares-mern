@@ -20,12 +20,13 @@ const OrderByEmail = ({order, index}) => {
                
                 <td>{name}</td>
                 <td>{price}</td>
-                <td>{orderQuantity}</td>
+            <td>{orderQuantity}</td>
                 <td>{totalPrice}</td>  
+            <td className='capitalize'>{ paymentStatus}</td>
                
                {paymentStatus === "unpaid" ?  <td>
                     <Link to={`/payment/${_id}`} className='btn btn-success'>Unpaid</Link>
-                </td> : <button className='btn btn-success'>Paid</button>}
+                </td> : <td><button className='btn btn-success' disabled>Paid</button></td>}
 
             </tr>
     );
