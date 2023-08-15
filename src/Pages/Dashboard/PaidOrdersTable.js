@@ -2,9 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const PaidOrdersTable = ({ order, index }) => {
-  const { img, price, name, orderQuantity, email } = order;
+  const { img, name, orderQuantity, email } = order;
 
-  const totalPrice = price * orderQuantity;
   console.log(order);
   return (
     <tr>

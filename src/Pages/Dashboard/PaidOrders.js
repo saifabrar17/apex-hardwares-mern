@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import OrderByEmail from "./OrderByEmail";
 import PaidOrdersTable from "./PaidOrdersTable";
 
 const PaidOrders = () => {
