@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import BkashPortal from "../Shared/Bkash/BkashPortal";
+import Loading from "../Shared/Loading/Loading";
 
 const Payment = () => {
   const { id } = useParams();
@@ -9,7 +11,8 @@ const Payment = () => {
   const [productAvailable, setProductAvailable] = useState(null); 
   const [orderQuantity, setOrderQuantity] = useState(null);
   const updatedAvailabilityValue = productAvailable - orderQuantity;
-
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Fetch order details
@@ -39,11 +42,18 @@ const Payment = () => {
       .catch((error) => {
         console.error("Error fetching order details:", error);
       });
+    
+      const loadingTimeout = setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+  
+      return () => clearTimeout(loadingTimeout);
+    
   }, []);
 
 
   const handlePaymentSuccess = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const { _id, productId, quantity, ...orderWithoutId } = order;
     const updatedOrder = { ...orderWithoutId, paymentStatus: "paid" };
@@ -63,7 +73,7 @@ const Payment = () => {
       .then((data) => {
         if (data.message === "Order updated successfully") {
           // Order updated successfully
-          toast.success("Order updated successfully");
+          toast.success("Payment succeeded.");
 
           // Update product quantity in products collection
           const productUpdateRequestOptions = {
@@ -74,23 +84,22 @@ const Payment = () => {
             },
             body: JSON.stringify({ available: updatedAvailabilityValue }), 
           };
+          setIsLoading(true);
 
-          fetch(
-            `http://localhost:5000/product/${productId}`,
-            productUpdateRequestOptions
-          )
-            .then((productResponse) => productResponse.json())
-            .then((productData) => {
-              if (productData.message === "Product updated successfully") {
-                // Product availability updated successfully
-                toast.success("Product availability updated successfully");
-              } else {
-                toast.error("Failed to update product availability");
-              }
-            })
-            .catch((error) => {
-              console.error("Error updating product availability:", error);
-            });
+          setTimeout(() => {
+            fetch(`http://localhost:5000/product/${productId}`, productUpdateRequestOptions)
+              .then((productResponse) => productResponse.json())
+              .then((productData) => {
+                if (productData.message === "Product updated successfully") {
+                  navigate(`/dashboard/orders`);
+                } else {
+                  toast.error("Failed to update product availability");
+                }
+              })
+              .catch((error) => {
+                console.error("Error updating product availability:", error);
+              });
+          }, 2000);
         } else {
           toast.error("Failed to update order");
         }
@@ -102,13 +111,14 @@ const Payment = () => {
 
   return (
     <div>
-      {order ? (
+      {isLoading ? (
+        <Loading /> // Show the loader
+      ) : order ? (
         <div>
-          <p>Pay for Order ID: {id}</p>
-          <button className="btn btn-success" onClick={handlePaymentSuccess}>
-            Complete Payment
-          </button>
-          {/* Display other order details here */}
+          <BkashPortal
+            order={order}
+            handlePaymentSuccess={handlePaymentSuccess}
+          ></BkashPortal>
         </div>
       ) : (
         <p>Loading...</p>
