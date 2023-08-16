@@ -26,6 +26,7 @@ import UpdateProduct from './Pages/Products/UpdateProduct';
 import PaidOrders from './Pages/Dashboard/PaidOrders';
 import DashIndex from './Pages/Dashboard/DashIndex';
 import ChartView from './Pages/Dashboard/ChartView';
+import OrderConfirmation from './Pages/Dashboard/OrderConfirmation';
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
           <Route path="review" element={<AddReview></AddReview>}></Route>
           
           <Route path="orders" element={<MyOrders></MyOrders>}></Route>
+          <Route path="confirmed" element={<OrderConfirmation></OrderConfirmation>}></Route>
           <Route path="addNewProduct" element={<RequireAdmin><AddNewProduct></AddNewProduct></RequireAdmin>}></Route>
           <Route path="allPaidOrders" element={<RequireAdmin><PaidOrders></PaidOrders></RequireAdmin>}></Route>
           <Route path="updateStock" element={<RequireAdmin><SearchProduct></SearchProduct></RequireAdmin>}></Route>
