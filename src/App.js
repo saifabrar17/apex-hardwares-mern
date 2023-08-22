@@ -27,6 +27,7 @@ import PaidOrders from './Pages/Dashboard/PaidOrders';
 import DashIndex from './Pages/Dashboard/DashIndex';
 import ChartView from './Pages/Dashboard/ChartView';
 import OrderConfirmation from './Pages/Dashboard/OrderConfirmation';
+import PaymentConfirmed from './Pages/Payment/PaymentConfirmed';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
         <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
           <Route index element={<DashIndex></DashIndex>}></Route>
           <Route path="review" element={<AddReview></AddReview>}></Route>
+          <Route path="payment_confirmation" element={<PaymentConfirmed></PaymentConfirmed>}></Route>
           
           <Route path="orders" element={<MyOrders></MyOrders>}></Route>
           <Route path="confirmed" element={<OrderConfirmation></OrderConfirmation>}></Route>

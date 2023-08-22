@@ -91,7 +91,7 @@ const Payment = () => {
               .then((productResponse) => productResponse.json())
               .then((productData) => {
                 if (productData.message === "Product updated successfully") {
-                  navigate(`/dashboard/orders`);
+                  navigate(`/dashboard/payment_confirmation?amount=${order.orderQuantity * order.price}&orderId=${id}`);
                 } else {
                   toast.error("Failed to update product availability");
                 }
@@ -100,6 +100,7 @@ const Payment = () => {
                 console.error("Error updating product availability:", error);
               });
           }, 2000);
+          console.log(order.orderQuantity);
         } else {
           toast.error("Failed to update order");
         }
