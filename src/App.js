@@ -28,6 +28,7 @@ import DashIndex from './Pages/Dashboard/DashIndex';
 import ChartView from './Pages/Dashboard/ChartView';
 import OrderConfirmation from './Pages/Dashboard/OrderConfirmation';
 import PaymentConfirmed from './Pages/Payment/PaymentConfirmed';
+import CustomOrder from './Pages/Dashboard/CustomOrder';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
             <Purchase></Purchase>
           </RequireAuth>
         }></Route>
+      
         <Route path='/payment/:id' element={
           <RequireAuth>
             <Payment></Payment>
@@ -66,6 +68,7 @@ function App() {
           <Route path="manageAllProduct" element={<RequireAdmin><ManageAllProducts></ManageAllProducts></RequireAdmin>}></Route>
           <Route path="stockOverview" element={<RequireAdmin><ChartView></ChartView></RequireAdmin>}></Route>
           <Route path="allUsers" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>}></Route>
+          <Route path="customOrder" element={<RequireAdmin><CustomOrder></CustomOrder></RequireAdmin>}></Route>
         </Route>
 
         <Route path='*' element={<NotFound></NotFound>}></Route>
