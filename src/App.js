@@ -29,6 +29,7 @@ import ChartView from './Pages/Dashboard/ChartView';
 import OrderConfirmation from './Pages/Dashboard/OrderConfirmation';
 import PaymentConfirmed from './Pages/Payment/PaymentConfirmed';
 import CustomOrder from './Pages/Dashboard/CustomOrder';
+import AllCustomOrders from './Pages/Dashboard/AllCustomOrders';
 
 function App() {
   return (
@@ -69,6 +70,7 @@ function App() {
           <Route path="stockOverview" element={<RequireAdmin><ChartView></ChartView></RequireAdmin>}></Route>
           <Route path="allUsers" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>}></Route>
           <Route path="customOrder" element={<RequireAdmin><CustomOrder></CustomOrder></RequireAdmin>}></Route>
+          <Route path="allCustomOrders" element={<RequireAdmin><AllCustomOrders></AllCustomOrders></RequireAdmin>}></Route>
         </Route>
 
         <Route path='*' element={<NotFound></NotFound>}></Route>

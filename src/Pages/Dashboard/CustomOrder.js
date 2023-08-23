@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-
+import useScanDetection from "use-scan-detection";
 const CustomOrder = () => {
   const [products, setProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); // Search by product ID
+  const [barcodeData, setBarcodeData] = useState(""); // Barcode data from scan
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [orderDetails, setOrderDetails] = useState({
     productId: "",
@@ -15,7 +17,6 @@ const CustomOrder = () => {
   });
 
   useEffect(() => {
-
     fetch("http://localhost:5000/product/")
       .then((response) => response.json())
       .then((data) => setProducts(data))
@@ -32,20 +33,17 @@ const CustomOrder = () => {
       ...prevOrderDetails,
       productId: selectedProductId,
     }));
-    };
-    
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-  
-
     if (name === "quantity") {
       const parsedValue = parseInt(value);
       const calculatedTotalPrice = selectedProduct?.price * parsedValue;
       setOrderDetails((prevOrderDetails) => ({
         ...prevOrderDetails,
         [name]: parsedValue,
-        total: calculatedTotalPrice.toString(), 
+        total: calculatedTotalPrice.toString(),
       }));
     } else {
       setOrderDetails((prevOrderDetails) => ({
@@ -57,7 +55,7 @@ const CustomOrder = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   
+
     fetch("http://localhost:5000/customOrder", {
       method: "POST",
       headers: {
@@ -68,7 +66,7 @@ const CustomOrder = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Order submitted:", data);
-        
+
         setSelectedProduct(null);
         setOrderDetails({
           productId: "",
@@ -76,7 +74,7 @@ const CustomOrder = () => {
           quantity: "",
           email: "",
           userName: "",
-            phone: "",
+          phone: "",
           total: "",
           location: "",
         });
@@ -92,11 +90,36 @@ const CustomOrder = () => {
     return true;
   };
 
-    const isSubmitDisabled = !validateQuantity(orderDetails.quantity);
-    const totalPrice = selectedProduct?.price * orderDetails.quantity;
+  useScanDetection({
+    onComplete: (data) => {
+      setBarcodeData(data);
+      setSearchQuery(data); // Set the scanned data as the search query
+    },
+    minLength: 3,
+  });
+
+  useEffect(() => {
+    // Find the product in the products list based on the search query
+    const foundProduct = products.find(
+      (product) => product._id === searchQuery
+    );
+    setSelectedProduct(foundProduct); // Set the selected product
+  }, [searchQuery, products]);
+
+  const isSubmitDisabled = !validateQuantity(orderDetails.quantity);
+  const totalPrice = selectedProduct?.price * orderDetails.quantity;
   console.log(totalPrice);
   return (
-    <div className="p-10">
+      <div className="p-10">
+          <h2 className='text-2xl my-2 text-center text-primary'>Create Custom Order</h2>
+      <input
+        type="hidden"
+        placeholder="Enter product ID from barcode"
+        value={barcodeData} // This can also be searchQuery depending on your use case
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="input input-bordered input-md w-full"
+      />
+
       <select
         className="select select-info w-full "
         onChange={handleProductSelect}
@@ -139,6 +162,7 @@ const CustomOrder = () => {
                 value={selectedProduct.name}
                 onChange={handleInputChange}
                 className="input input-bordered input-md w-full  "
+                disabled
               />
             </div>
             <div className="form-control w-full">
@@ -167,8 +191,8 @@ const CustomOrder = () => {
                 placeholder={totalPrice}
                 value={orderDetails.totalPrice}
                 onChange={handleInputChange}
-                className="input input-bordered input-md w-full  "
-                // required
+                className="input input-bordered input-md text-black w-full cursor-default "
+                disabled
               />
             </div>
             <div className="form-control w-full">
@@ -230,7 +254,7 @@ const CustomOrder = () => {
 
             <button
               type="submit"
-              className="btn btn-block btn-primary text-white"
+              className="btn btn-block btn-primary text-white mt-9"
               disabled={isSubmitDisabled}
             >
               Create Order
