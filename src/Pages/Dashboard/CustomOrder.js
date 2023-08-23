@@ -10,16 +10,17 @@ const CustomOrder = () => {
     email: "",
     userName: "",
     phone: "",
+    total: "",
     location: "",
   });
 
   useEffect(() => {
-    // Fetch product data from your server
+
     fetch("http://localhost:5000/product/")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error fetching products:", error));
-  }, []); // Empty dependency array to ensure the effect runs only once
+  }, []);
 
   const handleProductSelect = (event) => {
     const selectedProductId = event.target.value;
@@ -31,19 +32,32 @@ const CustomOrder = () => {
       ...prevOrderDetails,
       productId: selectedProductId,
     }));
-  };
+    };
+    
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setOrderDetails((prevOrderDetails) => ({
-      ...prevOrderDetails,
-      [name]: value,
-    }));
+  
+
+    if (name === "quantity") {
+      const parsedValue = parseInt(value);
+      const calculatedTotalPrice = selectedProduct?.price * parsedValue;
+      setOrderDetails((prevOrderDetails) => ({
+        ...prevOrderDetails,
+        [name]: parsedValue,
+        total: calculatedTotalPrice.toString(), 
+      }));
+    } else {
+      setOrderDetails((prevOrderDetails) => ({
+        ...prevOrderDetails,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Send the orderDetails to the server
+   
     fetch("http://localhost:5000/customOrder", {
       method: "POST",
       headers: {
@@ -54,7 +68,7 @@ const CustomOrder = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Order submitted:", data);
-        // Reset the form
+        
         setSelectedProduct(null);
         setOrderDetails({
           productId: "",
@@ -62,15 +76,27 @@ const CustomOrder = () => {
           quantity: "",
           email: "",
           userName: "",
-          phone: "",
+            phone: "",
+          total: "",
           location: "",
         });
       })
       .catch((error) => console.error("Error submitting order:", error));
   };
-  console.log(selectedProduct);
+
+  const validateQuantity = (value) => {
+    if (selectedProduct) {
+      const availableQuantity = selectedProduct.available;
+      return value >= 1 && value <= availableQuantity;
+    }
+    return true;
+  };
+
+    const isSubmitDisabled = !validateQuantity(orderDetails.quantity);
+    const totalPrice = selectedProduct?.price * orderDetails.quantity;
+  console.log(totalPrice);
   return (
-    <div>
+    <div className="p-10">
       <select
         className="select select-info w-full "
         onChange={handleProductSelect}
@@ -87,9 +113,16 @@ const CustomOrder = () => {
       </select>
       {selectedProduct && (
         <div className="pt-10">
+          <div>
+            <img
+              className="rounded-xl object-cover w-48"
+              src={selectedProduct.img}
+              alt=""
+            />
+          </div>
           <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-5">
             <input
-              type="text"
+              type="hidden"
               name="productId"
               value={selectedProduct._id}
               onChange={handleInputChange}
@@ -115,15 +148,32 @@ const CustomOrder = () => {
               <input
                 type="number"
                 name="quantity"
-                placeholder="Quantity"
+                placeholder={`Available ${selectedProduct.available} units`}
                 value={orderDetails.quantity}
                 onChange={handleInputChange}
-                className="input input-bordered input-md w-full  "
+                className={`input input-bordered input-md w-full ${
+                  !validateQuantity(orderDetails.quantity) ? "input-error" : ""
+                }`}
+                required
               />
             </div>
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text email">Location:</span>
+                <span className="label-text email">Total Price:</span>
+              </label>
+              <input
+                type="text"
+                name="total"
+                placeholder={totalPrice}
+                value={orderDetails.totalPrice}
+                onChange={handleInputChange}
+                className="input input-bordered input-md w-full  "
+                // required
+              />
+            </div>
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text email">Buyer's Email:</span>
               </label>
               <input
                 type="email"
@@ -132,11 +182,12 @@ const CustomOrder = () => {
                 value={orderDetails.email}
                 onChange={handleInputChange}
                 className="input input-bordered input-md w-full  "
+                required
               />
             </div>
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text email">Location:</span>
+                <span className="label-text email">Buyer's Name:</span>
               </label>
               <input
                 type="text"
@@ -145,11 +196,12 @@ const CustomOrder = () => {
                 value={orderDetails.userName}
                 onChange={handleInputChange}
                 className="input input-bordered input-md w-full  "
+                required
               />
             </div>
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text email">Location:</span>
+                <span className="label-text email">Buyer's Phone:</span>
               </label>
               <input
                 type="tel"
@@ -158,26 +210,30 @@ const CustomOrder = () => {
                 value={orderDetails.phone}
                 onChange={handleInputChange}
                 className="input input-bordered input-md w-full  "
+                required
               />
             </div>
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text email">Location:</span>
+                <span className="label-text email">Buyer's Location:</span>
               </label>
-              <input
+              <textarea
                 type="text"
                 name="location"
                 placeholder="Location"
                 value={orderDetails.location}
                 onChange={handleInputChange}
                 className="input input-bordered input-md w-full  "
+                required
               />
             </div>
+
             <button
               type="submit"
               className="btn btn-block btn-primary text-white"
+              disabled={isSubmitDisabled}
             >
-              Submit Order
+              Create Order
             </button>
           </form>
         </div>
