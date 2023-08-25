@@ -56,12 +56,18 @@ const CustomOrder = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    const orderDataToSend = {
+      ...orderDetails,
+      img: selectedProduct.img,
+       productName: selectedProduct.name
+    };
+
     fetch("http://localhost:5000/customOrder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(orderDetails),
+      body: JSON.stringify(orderDataToSend),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -110,12 +116,14 @@ const CustomOrder = () => {
   const totalPrice = selectedProduct?.price * orderDetails.quantity;
   console.log(totalPrice);
   return (
-      <div className="p-10">
-          <h2 className='text-2xl my-2 text-center text-primary'>Create Custom Order</h2>
+    <div className="p-10">
+      <h2 className="text-2xl my-2 text-center text-primary">
+        Create Custom Order
+      </h2>
       <input
         type="hidden"
         placeholder="Enter product ID from barcode"
-        value={barcodeData} // This can also be searchQuery depending on your use case
+        value={barcodeData}
         onChange={(e) => setSearchQuery(e.target.value)}
         className="input input-bordered input-md w-full"
       />
