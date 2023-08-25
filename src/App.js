@@ -2,12 +2,10 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Blogs from './Pages/Blogs/Blogs';
 import 'react-toastify/dist/ReactToastify.css';
-import Portfolio from './Pages/Blogs/Portfolio';
 import AddNewProduct from './Pages/Dashboard/AddNewProduct';
 import AddReview from './Pages/Dashboard/AddReview';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyOrders from './Pages/Dashboard/MyOrders';
-import Profile from './Pages/Dashboard/Profile';
 import HomePage from './Pages/Home/HomePage';
 import Purchase from './Pages/Purchase/Purchase';
 import Footer from './Pages/Shared/Footer/Footer';
@@ -30,6 +28,7 @@ import OrderConfirmation from './Pages/Dashboard/OrderConfirmation';
 import PaymentConfirmed from './Pages/Payment/PaymentConfirmed';
 import CustomOrder from './Pages/Dashboard/CustomOrder';
 import AllCustomOrders from './Pages/Dashboard/AllCustomOrders';
+import RequireEmployee from './Pages/UserAuthorization/RequireEmployee';
 
 function App() {
   return (
@@ -69,7 +68,7 @@ function App() {
           <Route path="manageAllProduct" element={<RequireAdmin><ManageAllProducts></ManageAllProducts></RequireAdmin>}></Route>
           <Route path="stockOverview" element={<RequireAdmin><ChartView></ChartView></RequireAdmin>}></Route>
           <Route path="allUsers" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>}></Route>
-          <Route path="customOrder" element={<RequireAdmin><CustomOrder></CustomOrder></RequireAdmin>}></Route>
+          <Route path="customOrder" element={<RequireEmployee><CustomOrder></CustomOrder></RequireEmployee>}></Route>
           <Route path="allCustomOrders" element={<RequireAdmin><AllCustomOrders></AllCustomOrders></RequireAdmin>}></Route>
         </Route>
 
