@@ -54,16 +54,36 @@ const UserTd = ({ user, index, refetch, handleDeleteUser }) => {
     <tr>
       <th>{index + 1}</th>
       <td>{email}</td>
-      <td>
+      {/* <td>
         {role !== "admin" && role !== "employee" && (
-          <>
-            <button onClick={makeAdmin} className="btn btn-xs">
+          <div className="">
+            <button onClick={makeAdmin} className="btn btn-xs mr-3">
               Make Admin
             </button>
             <button onClick={makeEmployee} className="btn btn-xs">
               Make Employee
             </button>
-          </>
+          </div>
+        )}
+      </td> */}
+      <td>
+        {role === "admin" ? (
+          <button className="btn btn-xs" disabled>
+            Admin
+          </button>
+        ) : role === "employee" ? (
+          <button className="btn btn-xs" disabled>
+            Employee
+          </button>
+        ) : (
+          <div className="">
+            <button onClick={makeAdmin} className="btn btn-xs mr-3">
+              Make Admin
+            </button>
+            <button onClick={makeEmployee} className="btn btn-xs">
+              Make Employee
+            </button>
+          </div>
         )}
       </td>
 

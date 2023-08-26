@@ -65,6 +65,7 @@ function App() {
           <Route path="addNewProduct" element={<RequireAdmin><AddNewProduct></AddNewProduct></RequireAdmin>}></Route>
           <Route path="allPaidOrders" element={<RequireAdmin><PaidOrders></PaidOrders></RequireAdmin>}></Route>
           <Route path="updateStock" element={<RequireAdmin><SearchProduct></SearchProduct></RequireAdmin>}></Route>
+          <Route path="updateStock" element={<RequireEmployee><SearchProduct></SearchProduct></RequireEmployee>}></Route>
           <Route path="manageAllProduct" element={<RequireAdmin><ManageAllProducts></ManageAllProducts></RequireAdmin>}></Route>
           <Route path="stockOverview" element={<RequireAdmin><ChartView></ChartView></RequireAdmin>}></Route>
           <Route path="allUsers" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>}></Route>
