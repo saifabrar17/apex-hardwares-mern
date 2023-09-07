@@ -28,13 +28,13 @@ const Dashboard = () => {
           <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
           <ul className="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
-            {/* <li><Link to="/dashboard">My Profile</Link></li> */}
-            {!admin || !employee ? (
+            
+            {!admin && !employee ? (
               <li>
                 <Link to="/dashboard/orders">My Orders</Link>
               </li>
             ) : null}
-            {!admin || !employee ? (
+            {!admin && !employee ? (
               <li>
                 <Link to="/dashboard/review">Add Review</Link>
               </li>
@@ -44,14 +44,24 @@ const Dashboard = () => {
                 <Link to="/dashboard/addNewProduct">Add Product</Link>
               </li>
             )}
-            {employee || admin ? (
+            {employee  ? (
+              <li>
+                <Link to="/dashboard/updateStock_emp">Update Stock</Link>
+              </li>
+            ) : null}
+            {admin ? (
               <li>
                 <Link to="/dashboard/updateStock">Update Stock</Link>
               </li>
             ) : null}
-            {admin || employee ? (
+            {admin ? (
               <li>
                 <Link to="/dashboard/allPaidOrders">All Paid Orders</Link>
+              </li>
+            ) : null}
+            {employee ? (
+              <li>
+                <Link to="/dashboard/allPaidOrders_emp">All Paid Orders</Link>
               </li>
             ) : null}
             {admin && (
@@ -59,9 +69,14 @@ const Dashboard = () => {
                 <Link to="/dashboard/manageAllProduct">All Products</Link>
               </li>
             )}
-            {admin || employee ? (
+            {admin ? (
               <li>
                 <Link to="/dashboard/stockOverview">Overview</Link>
+              </li>
+            ) : null}
+            {employee ? (
+              <li>
+                <Link to="/dashboard/stockOverview_emp">Overview</Link>
               </li>
             ) : null}
 
@@ -75,9 +90,14 @@ const Dashboard = () => {
                 <Link to="/dashboard/customOrder">Create Order</Link>
               </li>
             )}
-            {employee || admin ? (
+            {admin ? (
               <li>
                 <Link to="/dashboard/allCustomOrders">Custom Orders</Link>
+              </li>
+            ) : null}
+            {employee ? (
+              <li>
+                <Link to="/dashboard/allCustomOrders_emp">Custom Orders</Link>
               </li>
             ) : null}
           </ul>

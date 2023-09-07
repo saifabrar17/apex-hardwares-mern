@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import useScanDetection from "use-scan-detection";
 const CustomOrder = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState(""); // Search by product ID
   const [barcodeData, setBarcodeData] = useState(""); // Barcode data from scan
@@ -28,12 +31,84 @@ const CustomOrder = () => {
     const selectedProductData = products.find(
       (product) => product._id === selectedProductId
     );
-    setSelectedProduct(selectedProductData);
+    setSelectedProduct(selectedProductData); // Update selected product with available quantity
     setOrderDetails((prevOrderDetails) => ({
       ...prevOrderDetails,
       productId: selectedProductId,
     }));
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const orderDataToSend = {
+      ...orderDetails,
+      img: selectedProduct.img,
+      productName: selectedProduct.name,
+    };
+
+    fetch("http://localhost:5000/customOrder", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderDataToSend),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Order submitted:", data);
+
+        // Calculate updated available quantity for the product
+        const updatedAvailableQuantity = selectedProduct.available - orderDetails.quantity;
+
+        // Update product quantity in the product collection
+        fetch(`http://localhost:5000/product/${selectedProduct._id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ available: updatedAvailableQuantity }),
+        })
+          .then((productResponse) => productResponse.json())
+          .then((productData) => {
+            if (productData.message === "Product updated successfully") {
+              console.log("Product quantity updated successfully");
+            } else {
+              console.error("Failed to update product quantity");
+            }
+          })
+          .catch((error) => {
+            console.error("Error updating product quantity:", error);
+          });
+
+        setSelectedProduct(null);
+        setOrderDetails({
+          productId: "",
+          name: "",
+          quantity: "",
+          email: "",
+          userName: "",
+          phone: "",
+          total: "",
+          location: "",
+        });
+        toast('Order Created Successfully!');
+        navigate(`/dashboard/allCustomOrders_emp`);
+      })
+      .catch((error) => console.error("Error submitting order:", error));
+  };
+
+  // const handleProductSelect = (event) => {
+  //   const selectedProductId = event.target.value;
+  //   const selectedProductData = products.find(
+  //     (product) => product._id === selectedProductId
+  //   );
+  //   setSelectedProduct(selectedProductData);
+  //   setOrderDetails((prevOrderDetails) => ({
+  //     ...prevOrderDetails,
+  //     productId: selectedProductId,
+  //   }));
+  // };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -53,40 +128,43 @@ const CustomOrder = () => {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
 
-    const orderDataToSend = {
-      ...orderDetails,
-      img: selectedProduct.img,
-       productName: selectedProduct.name
-    };
+  //   const orderDataToSend = {
+  //     ...orderDetails,
+  //     img: selectedProduct.img,
+  //      productName: selectedProduct.name
+  //   };
 
-    fetch("http://localhost:5000/customOrder", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(orderDataToSend),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Order submitted:", data);
+  //   fetch("http://localhost:5000/customOrder", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(orderDataToSend),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("Order submitted:", data);
 
-        setSelectedProduct(null);
-        setOrderDetails({
-          productId: "",
-          name: "",
-          quantity: "",
-          email: "",
-          userName: "",
-          phone: "",
-          total: "",
-          location: "",
-        });
-      })
-      .catch((error) => console.error("Error submitting order:", error));
-  };
+  //       setSelectedProduct(null);
+  //       setOrderDetails({
+  //         productId: "",
+  //         name: "",
+  //         quantity: "",
+  //         email: "",
+  //         userName: "",
+  //         phone: "",
+  //         total: "",
+  //         location: "",
+  //       });
+  //       toast('Order Created Successfully!');
+  //       navigate(`/dashboard/allCustomOrders_emp`);
+
+  //     })
+  //     .catch((error) => console.error("Error submitting order:", error));
+  // };
 
   const validateQuantity = (value) => {
     if (selectedProduct) {
@@ -175,7 +253,7 @@ const CustomOrder = () => {
             </div>
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text email">Quantity:</span>
+                <span className="label-text">Quantity:</span>
               </label>
               <input
                 type="number"
@@ -191,7 +269,7 @@ const CustomOrder = () => {
             </div>
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text email">Total Price:</span>
+                <span className="label-text">Total Price:</span>
               </label>
               <input
                 type="text"
@@ -219,7 +297,7 @@ const CustomOrder = () => {
             </div>
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text email">Buyer's Name:</span>
+                <span className="label-text">Buyer's Name:</span>
               </label>
               <input
                 type="text"
@@ -233,7 +311,7 @@ const CustomOrder = () => {
             </div>
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text email">Buyer's Phone:</span>
+                <span className="label-text">Buyer's Phone:</span>
               </label>
               <input
                 type="tel"
