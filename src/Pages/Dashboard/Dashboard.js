@@ -29,7 +29,7 @@ const Dashboard = () => {
           <ul className="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
             {/* <li><Link to="/dashboard">My Profile</Link></li> */}
-            {!admin || !employee ? (
+            {/* {!admin || !employee ? (
               <li>
                 <Link to="/dashboard/orders">My Orders</Link>
               </li>
@@ -38,7 +38,7 @@ const Dashboard = () => {
               <li>
                 <Link to="/dashboard/review">Add Review</Link>
               </li>
-            ) : null}
+            ) : null} */}
             {admin && (
               <li>
                 <Link to="/dashboard/addNewProduct">Add Product</Link>
